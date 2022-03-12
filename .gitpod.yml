@@ -9,13 +9,15 @@ tasks:
     init: gp sync-await install
     command: |
       eval $(gp env -e DRUSH_OPTIONS_URI="0.0.0.0:8888")
-      [ ! -d content ] && echo "Looks like you haven't initialized a Tome site yet - make sure to composer require any profiles you want to use, then run drush tome:init to get started!"
+      [ ! -d content ] && echo "Looks like you haven't initialized a Tome site yet - make sure to composer require any profiles you want to use (ex: composer require drupal-tome/bookish), then run drush tome:init to get started!"
       [ -d content ] && drush uli
+    openMode: split-left
   - name: Runserver
     init: gp sync-await install
     command: |
+      [ ! -d content ] && echo "When you're finished running drush tome:init you can use this tab to run your server with: drush runserver 0.0.0.0:8888"
       [ -d content ] && drush runserver 0.0.0.0:8888
-    openMode: split-left
+    openMode: split-right
 ports:
   - port: 8888
     onOpen: ignore

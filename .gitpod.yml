@@ -13,7 +13,8 @@ tasks:
       [ -d content ] && drush uli
   - name: Runserver
     init: gp sync-await install
-    command: [ -d content ] && drush runserver 0.0.0.0:8888
+    command: |
+      [ -d content ] && drush runserver 0.0.0.0:8888
     openMode: split-left
 ports:
   - port: 8888
